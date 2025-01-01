@@ -7,6 +7,11 @@ pub struct Matrix3x3<T> {
     pub m: [[T; 3]; 3],
 }
 
+#[derive(Debug, Default)]
+pub struct Matrix4x4<T> {
+    pub m: [[T; 4]; 4],
+}
+
 impl Matrix3x3<f32> {
     pub fn zeros() -> Matrix3x3<f32> {
         return Matrix3x3 {
@@ -20,8 +25,14 @@ impl Matrix3x3<f32> {
         };
     }
 
+    // matrix row
     pub fn row(&self, row_idx: usize) -> Vec3f {
         return Vec3f::new(self.m[row_idx][0], self.m[row_idx][1], self.m[row_idx][2]);
+    }
+
+    // matrix column
+    pub fn col(&self, col: usize) -> Vec3f {
+        return Vec3f::new(self.m[0][col], self.m[1][col], self.m[2][col]);
     }
 }
 

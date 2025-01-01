@@ -32,3 +32,8 @@
 *.app
 
 target
+
+
+# Added by cargo
+
+/target

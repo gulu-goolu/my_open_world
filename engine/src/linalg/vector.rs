@@ -21,10 +21,28 @@ impl<T> Vec3<T> {
     }
 }
 
-impl Vec3f {
-    pub fn length(&self) -> f32 {
-        let s = self.x * self.x + self.y * self.y + self.z * self.z;
-        return s.sqrt();
+impl<T: Mul<Output = T>> Mul for Vec4<T> {
+    type Output = Vec4<T>;
+
+    fn mul(self, rhs: Self) -> Vec4<T> {
+        return Vec4 {
+            x: self.x * rhs.x,
+            y: self.y * rhs.y,
+            z: self.z * rhs.z,
+            w: self.w * rhs.w,
+        };
+    }
+}
+
+impl<T: Mul<Output = T>> Mul for Vec3<T> {
+    type Output = Vec3<T>;
+
+    fn mul(self, rhs: Self) -> Self::Output {
+        return Vec3 {
+            x: self.x * rhs.x,
+            y: self.y * rhs.y,
+            z: self.z * rhs.z,
+        };
     }
 }
 
@@ -80,6 +98,7 @@ impl<T: Sub<Output = T>> Sub for Vec3<T> {
 }
 
 pub type Vec3f = Vec3<f32>;
+pub type Vec4f = Vec4<f32>;
 
 #[cfg(test)]
 mod tests {
@@ -96,7 +115,6 @@ mod tests {
     #[test]
     fn test_dot() {
         let v = dot3(Vec3::new(1, 2, 3), Vec3::new(1, 2, 3));
-
         assert_eq!(v, 1 + 4 + 9);
     }
 }

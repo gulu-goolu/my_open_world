@@ -1,4 +1,4 @@
-use super::super::linalg::matrix::Matrix4x4;
+use super::matrix::Matrix4x4;
 
 pub struct Transform {
     pub local_to_world: Matrix4x4<f32>,

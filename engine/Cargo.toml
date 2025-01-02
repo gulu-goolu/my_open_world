@@ -1,6 +1,5 @@
-workspace = { members = ["engine"] }
 [package]
-name = "my_open_world"
+name = "engine"
 version = "0.1.0"
 edition = "2021"
 

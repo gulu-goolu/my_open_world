@@ -83,7 +83,7 @@ pub type Vec3f = Vec3<f32>;
 
 #[cfg(test)]
 mod tests {
-    use super::Vec3;
+    use super::{dot3, Vec3};
 
     #[test]
     fn test_new() {
@@ -91,5 +91,12 @@ mod tests {
         assert_eq!(1.0, v1.x);
         assert_eq!(2.0, v1.y);
         assert_eq!(3.0, v1.z);
+    }
+
+    #[test]
+    fn test_dot() {
+        let v = dot3(Vec3::new(1, 2, 3), Vec3::new(1, 2, 3));
+
+        assert_eq!(v, 1 + 4 + 9);
     }
 }

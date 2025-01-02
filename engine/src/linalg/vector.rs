@@ -7,7 +7,7 @@ pub struct Vec3<T> {
     pub z: T,
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub struct Vec4<T> {
     pub x: T,
     pub y: T,
@@ -18,6 +18,12 @@ pub struct Vec4<T> {
 impl<T> Vec3<T> {
     pub fn new(x: T, y: T, z: T) -> Vec3<T> {
         return Vec3 { x: x, y: y, z: z };
+    }
+}
+
+impl<T> Vec4<T> {
+    pub fn new(x: T, y: T, z: T, w: T) -> Self {
+        Self { x, y, z, w }
     }
 }
 
@@ -117,4 +123,17 @@ mod tests {
         let v = dot3(Vec3::new(1, 2, 3), Vec3::new(1, 2, 3));
         assert_eq!(v, 1 + 4 + 9);
     }
+
+    #[test]
+    fn test_mul_vec3() {
+        let v1 = Vec3::new(1, 2, 3);
+        let v2 = Vec3::new(1, 2, 3);
+        let v3 = v1 * v2;
+        assert_eq!(1, v3.x);
+        assert_eq!(4, v3.y);
+        assert_eq!(9, v3.z);
+    }
+
+    #[test]
+    fn test_mul_vec4() {}
 }
